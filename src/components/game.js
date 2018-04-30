@@ -16,8 +16,8 @@ export default class Game extends React.Component {
       sourceSelection: -1,
       status: '',
       turn: 'white'
-    }
-  }
+    } // eof this.state
+  } // eof constructor
  
   handleClick(i){
     const squares = this.state.squares.slice();
@@ -33,8 +33,8 @@ export default class Game extends React.Component {
           status: "Choose destination for the selected piece",
           sourceSelection: i
         });
-      }
-    }
+      } // eof if(!squares[i] || squares[i].player !== this.state.player)
+    } // eof if(this.state.sourceSelection === -1)
 
     else if(this.state.sourceSelection > -1){
       delete squares[this.state.sourceSelection].style.backgroundColor;
@@ -81,12 +81,11 @@ export default class Game extends React.Component {
           this.setState({
             status: "Wrong selection. Choose valid source and destination again.",
             sourceSelection: -1,
-          });
-        }
-      }
-    }
-
-  }
+          }); // eof this.setState
+        } // eof if(isMovePossible && isMoveLegal)
+      } // eof if(squares[i] && squares[i].player === this.state.player)
+    } // eof else if(this.state.sourceSelection > -1)
+  } // eof handleClick
 
   /**
    * Check all path indices are null. For one steps move of pawn/others or jumping moves of knight array is empty, so  move is legal.
@@ -98,8 +97,8 @@ export default class Game extends React.Component {
     for(let i = 0; i < srcToDestPath.length; i++){
       if(this.state.squares[srcToDestPath[i]] !== null){
         isLegal = false;
-      }
-    }
+      } // eof if(this.state.squares[srcToDestPath[i]] !== null)
+    } // eof for(let i = 0; i 
     return isLegal;
   }
 
@@ -134,12 +133,9 @@ export default class Game extends React.Component {
         </div>
 
         <div className="icons-attribution">
-          <div> <small> Chess Icons And Favicon (extracted) By en:User:Cburnett [<a href="http://www.gnu.org/copyleft/fdl.html">GFDL</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>, <a href="http://opensource.org/licenses/bsd-license.php">BSD</a> or <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>], <a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">via Wikimedia Commons</a> </small></div>
         </div>
       </div>
-
-     
-      );
-  }
+    ); // eof return
+  } // eof   render()
 }
 
