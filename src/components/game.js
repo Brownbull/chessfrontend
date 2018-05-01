@@ -77,6 +77,7 @@ export default class Game extends React.Component {
 
             // save movements to be stored
             let movement = []
+            movement.game = 0;
             movement.piece = squares[this.state.sourceSelection].constructor.name;
             movement.src =  this.state.sourceSelection; 
             movement.dest = i;
