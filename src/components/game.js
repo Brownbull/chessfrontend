@@ -5,7 +5,7 @@ import Board from './board.js';
 import FallenSoldierBlock from './fallen-soldier-block.js';
 import initialiseChessBoard from '../helpers/board-initialiser.js';
 
-let movements = [];
+let game = [];
 
 export default class Game extends React.Component {
   constructor(){
@@ -75,15 +75,30 @@ export default class Game extends React.Component {
               }
             }
 
-            // save movements to be stored
-            let movement = []
+            // save game to be stored
+            let movement = {}
             movement.game = 0;
             movement.piece = squares[this.state.sourceSelection].constructor.name;
-            movement.src =  this.state.sourceSelection; 
+            movement.srce =  this.state.sourceSelection; 
             movement.dest = i;
-            movements.push(movement);
+            game.push(movement);
 
-            console.log(movements);
+            if (win != -1 ){
+
+              //fetch('https://pure-inlet-46062.herokuapp.com/imageurl', {
+              fetch('http://localhost:3000/gameadd', {
+                method: 'POST',
+                body: JSON.stringify(game),
+                headers: { "Content-Type": "application/json" }
+              })
+                .then(response => {
+                  return response.json();
+                }).then(data => {
+                  alert(JSON.stringify(data));
+                }).catch(err => {
+                  alert(err);
+                });
+            }
 
             squares[i] = squares[this.state.sourceSelection];
             squares[this.state.sourceSelection] = null;
