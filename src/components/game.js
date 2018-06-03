@@ -85,8 +85,8 @@ export default class Game extends React.Component {
 
             if (win != -1 ){
 
-              //fetch('https://pure-inlet-46062.herokuapp.com/imageurl', {
-              fetch('http://localhost:3000/gameadd', {
+              fetch('https://polar-savannah-62353.herokuapp.com/gameadd', {
+              //fetch('http://localhost:3000/gameadd', {
                 method: 'POST',
                 body: JSON.stringify(game),
                 headers: { "Content-Type": "application/json" }
